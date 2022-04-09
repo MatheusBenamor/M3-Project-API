@@ -1,5 +1,9 @@
+//configurações
 require('dotenv').config();
+const connect  = require('./configs/db.config');
+connect();
 
+//pacotes
 const express = require('express');
 const cors = require('cors');
 
