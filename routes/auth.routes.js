@@ -1,6 +1,7 @@
 //pacotes
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //modelos
 const User = require('../models/User.model')
@@ -38,7 +39,42 @@ try {
    //se não houver erros até aqui
    res.status(201).json('User created!')
 } catch (error){
-res.status(500).json({message: 'Error creating user', error})
+res.status(500).json({message: 'Error creating user', error: error.message})
+}
+});
+
+router.post('/login', async (req, res) => {
+const { username, password } = req.body;
+try {
+//verifica se as informações existem
+  if (!username || !password) {
+    throw new Error('You need to put a username and a password');
+  }
+  
+//verifica se o nome de usuário existe
+const userFromDB = await User.findOne({username});
+if(!userFromDB) {
+throw new Error('You need to put a valid username and password')
+}
+
+//valida a senha
+const validation = bcrypt.compareSync(password, userFromDB.passwordHash);
+
+if(!validation) {
+    throw new Error('Wrong username or password')
+}
+
+//crio informações para o token carregar (Dentro do token tem essas informações)
+const payload = {
+id: userFromDB._id,
+username: userFromDB.username
+};
+
+//criação do token que vai carregar a informação de Login
+const token = jwt.sign(payload, process.env.JWT_SECRET)
+} catch (error) {
+
+
 }
 })
 
