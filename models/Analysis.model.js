@@ -30,6 +30,7 @@ const analysisSchema = new Schema(
         type: "string",
       },
     },
+    //teste: [{type: String}]
   },
   {
     timestamp: true,
