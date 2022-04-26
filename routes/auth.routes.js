@@ -11,17 +11,17 @@ const router = Router();
 
 router.post("/signup", async (req, res) => {
   //informações que quero receber
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     //verificar se as informações existem
-    if (!username || !password) {
-      throw new Error("Missing username or password");
+    if (!username || !email || !password) {
+      throw new Error("Missing information");
     }
 
     //verificar se o usuário já existe no banco e se sim, jogar um erro
-    const userFromDB = await User.findOne({ username });
+    const userFromDB = await User.findOne({ email });
     if (userFromDB) {
-      throw new Error("This username already exists, try a new one");
+      throw new Error("This user already exist, try a new one");
     }
 
     //Caso não exista, continua o processo de criação
@@ -33,6 +33,7 @@ router.post("/signup", async (req, res) => {
     //criar usuário no banco de dados
     await User.create({
       username,
+      email,
       passwordHash,
     });
 
@@ -46,15 +47,15 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
     //verifica se as informações existem
-    if (!username || !password) {
+    if (!email || !password) {
       throw new Error("You need to put a username and a password");
     }
 
     //verifica se o nome de usuário existe
-    const userFromDB = await User.findOne({ username });
+    const userFromDB = await User.findOne({ email });
     if (!userFromDB) {
       throw new Error("You need to put a valid username and password");
     }
@@ -70,6 +71,7 @@ router.post("/login", async (req, res) => {
     const payload = {
       id: userFromDB._id,
       username: userFromDB.username,
+      email,
     };
 
     //criação do token que vai carregar a informação de Login
