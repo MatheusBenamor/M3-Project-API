@@ -3,7 +3,8 @@
 
 <img src="https://res.cloudinary.com/dqycgj4fq/image/upload/v1651003678/swot-analys-13_ycxkji.png" alt="SWOT COVER" />
 
-(Explicação do projeto)
+The SWOT project was created by two aspiring Web Developers, Matheus Benamor and Thais Fernandes, currently studying at the Ironhack's Bootcamp. 
+Our main goal is to make a platform that helps our clients to plan their business or personal life using swot analysis as a tool to better organize this process.
 
 Frontend Repository: [Client Repository](https://github.com/MatheusBenamor/M3-Project-CLIENT).
 
