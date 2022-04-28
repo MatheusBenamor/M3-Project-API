@@ -7,32 +7,28 @@ const analysisSchema = new Schema(
       required: true,
     },
     strengths: {
-      type: Array,
       maxItems: 5,
-      items: {
-        type: "string",
-      },
+      elements: [{
+        type: String
+    }],
     },
     weaknesses: {
-      type: Array,
       maxItems: 5,
-      items: {
-        type: "string",
-      },
+      elements: [{
+        type: String
+    }],
     },
     opportunities: {
-      type: Array,
       maxItems: 5,
-      items: {
-        type: "string",
-      },
+      elements: [{
+        type: String
+    }],
     },
     threats: {
-      type: Array,
       maxItems: 5,
-      items: {
-        type: "string",
-      },
+      elements: [{
+        type: String
+    }],
     },
     //teste: [{type: String}]
   },

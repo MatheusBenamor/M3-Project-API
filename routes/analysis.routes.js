@@ -68,3 +68,5 @@ router.delete("/profile", async (req, res) => {
     });
 }
 });
+
+module.exports = router;
