@@ -10,7 +10,16 @@ const router = Router();
 //POST - Vai criar uma nova análise e publicá-la no banco de dados
 router.post("/analysis", async (req, res) => {
   try {
-  } catch (error) {}
+    const userId = req.user.id;
+    const newAnalysis = await Analysis.create({ ...req.body, user: userId });
+    await User.findByIdAndUpdate(userId, { $push: { Analysis: newAnalysis._id } });
+    res.status(200).json(newAnalysis);
+} catch (error) {
+    res.status(error.status || 500).json({
+        place: "Error trying to create a new analysis",
+        error: error.message,
+      });
+  }
 });
 
 //GET - Vai puxar a análise salva da pessoa
