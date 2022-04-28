@@ -2,29 +2,33 @@ const { Schema, model } = require("mongoose");
 
 const analysisSchema = new Schema(
   {
+    analysisName: {
+      type: String,
+      required: true,
+    },
     strengths: {
-      type: array,
+      type: Array,
       maxItems: 5,
       items: {
         type: "string",
       },
     },
     weaknesses: {
-      type: array,
+      type: Array,
       maxItems: 5,
       items: {
         type: "string",
       },
     },
     opportunities: {
-      type: array,
+      type: Array,
       maxItems: 5,
       items: {
         type: "string",
       },
     },
     threats: {
-      type: array,
+      type: Array,
       maxItems: 5,
       items: {
         type: "string",
@@ -37,4 +41,4 @@ const analysisSchema = new Schema(
   }
 );
 
-module.exports = model ('Analysis', analysisSchema);
+module.exports = model("Analysis", analysisSchema);
