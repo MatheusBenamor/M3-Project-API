@@ -7,30 +7,26 @@ const analysisSchema = new Schema(
       required: true,
     },
     strengths: {
-      maxItems: 5,
       elements: [{
         type: String
     }],
     },
     weaknesses: {
-      maxItems: 5,
       elements: [{
         type: String
     }],
     },
     opportunities: {
-      maxItems: 5,
       elements: [{
         type: String
     }],
     },
     threats: {
-      maxItems: 5,
       elements: [{
         type: String
     }],
     },
-    //teste: [{type: String}]
+    //Formato: [{type: String}]
   },
   {
     timestamp: true,

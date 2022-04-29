@@ -3,16 +3,32 @@ const { Router } = require("express");
 
 //modelos
 const Analysis = require("../models/Analysis.model");
+const User = require("../models/User.model")
 
 //executar o router para gerar as rotas
 const router = Router();
 
 //POST - Vai criar uma nova análise e publicá-la no banco de dados
 router.post("/analysis", async (req, res) => {
+    const {
+        analysisName,
+        strengths,
+        weaknesses,
+        opportunities,
+        threats
+    } = req.body;
   try {
-    const userId = req.user.id;
-    const newAnalysis = await Analysis.create({ ...req.body, user: userId });
-    await User.findByIdAndUpdate(userId, { $push: { Analysis: newAnalysis._id } });
+    const analysis = new Analysis({
+        analysisName,
+        strengths,
+        weaknesses,
+        opportunities,
+        threats
+    })
+    let newAnalysis = await analysis.save()
+    //const userId = req.user.id;
+    //const newAnalysis = await Analysis.create({ ...req.body, user: userId });
+    //await User.findByIdAndUpdate(userId, { $push: { Analysis: newAnalysis._id } });
     res.status(200).json(newAnalysis);
 } catch (error) {
     res.status(error.status || 500).json({
