@@ -26,8 +26,11 @@ const analysisSchema = new Schema(
         type: String
     }],
     },
-    //Formato: [{type: String}]
-  },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+  }
+},
   {
     timestamp: true,
   }
