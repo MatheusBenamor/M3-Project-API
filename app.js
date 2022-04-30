@@ -14,9 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 //rotas públicas
-app.use('/', (req,res) => {
-    res.send('SWOT API')
-});
+app.use('/', require('./routes/home.routes'));
 app.use('/auth', require('./routes/auth.routes'));
 
 //middlewares de rotas
