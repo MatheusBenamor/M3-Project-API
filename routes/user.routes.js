@@ -5,8 +5,7 @@ const uploadCloud = require('../configs/cloudinary.config')
 
 const router = Router()
 
-//Adicionar o email depois
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
 
     try {
 

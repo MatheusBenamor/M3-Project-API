@@ -5,19 +5,17 @@ const  feedbackSchema = new Schema(
     {
         safe: {
             type: String,
-            required: true,
-            unique: true,
           },
           moderate: {
             type: String,
-            required: true,
           },
            risky: {
             type: String,
-            required: true,
           }
         },
           {
             timestamp: true,
           }
 );
+
+module.exports = model("Feedback", feedbackSchema);

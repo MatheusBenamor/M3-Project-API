@@ -23,6 +23,8 @@ app.use(require('./middlewares/auth.middleware'));
 //rotas privadas
 app.use('/user', require('./routes/user.routes'));
 app.use('/analysis', require('./routes/analysis.routes'));
+app.use('/feedback', require('./routes/feedback.routes'));
+
 
 
 app.listen(process.env.PORT, () => {
