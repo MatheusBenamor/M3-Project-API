@@ -12,7 +12,6 @@ router.get("/", async (req, res) => {
    
    try {
       const allFeedbacks = await Feedback.find()
-      res.send('Análise segura')
       res.status(200).json(allFeedbacks)
    } catch (error) {
       res

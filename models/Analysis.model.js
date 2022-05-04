@@ -6,26 +6,45 @@ const analysisSchema = new Schema(
       type: String,
       required: true,
     },
-    strengths: {
-      elements: [{
-        type: String
+    
+    strengths: 
+       [{
+        swotObject:{
+          type: String
+        },
+        relevance: {
+          type: Number
+        }
     }],
-    },
-    weaknesses: {
-      elements: [{
+    
+    
+    weaknesses: [{
+      swotObject:{
         type: String
+      },
+      relevance: {
+        type: Number
+      }
+  }],
+
+    opportunities: [{
+        swotObject:{
+          type: String
+        },
+        relevance: {
+          type: Number
+        }
     }],
-    },
-    opportunities: {
-      elements: [{
+    
+    threats: [{
+      swotObject:{
         type: String
-    }],
-    },
-    threats: {
-      elements: [{
-        type: String
-    }],
-    },
+      },
+      relevance: {
+        type: Number
+      }
+  }],
+  
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'User'
