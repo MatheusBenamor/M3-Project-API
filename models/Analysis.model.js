@@ -166,10 +166,7 @@ const analysisSchema = new Schema(
       type: Number,
       required: true,
     },
-    analysisScore: {
-      type: Schema.Types.ObjectId,
-      ref: 'result'
-    },  
+      
     userId: {
       type: Schema.Types.ObjectId,
       ref: 'User'
