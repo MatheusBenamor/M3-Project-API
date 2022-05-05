@@ -10,7 +10,7 @@ router.get('/:userId', async (req, res) => {
     try {
 
         const userId  =  req.user.id;
-        const userFromDB = await User.findById(userId).select("username email imageProfile")
+        const userFromDB = await User.findById(userId).select("username email image")
         res.status(200).json(userFromDB)
 
     } catch (error) {
