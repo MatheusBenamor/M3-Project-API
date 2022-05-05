@@ -165,6 +165,9 @@ const analysisSchema = new Schema(
     threatsRel5: {
       type: Number,
       required: true,
+    },
+    analysisScore: {
+      type: Number,
     },  
     userId: {
       type: Schema.Types.ObjectId,
