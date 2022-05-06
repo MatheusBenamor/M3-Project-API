@@ -19,11 +19,12 @@ router.post('/', async (req, res) => {
 }
 })
 
-//GET - Vai trazer TODAS as análises do DB
+//GET - Vai trazer TODAS as análises do user
 router.get('/', async (req, res) => {
+  const { id }= req.user;
   try {
-      const allAnalysis = await Analysis.find()
-      res.status(200).json(allAnalysis)
+      const alluserAnalysis = await Analysis.find({userId: id})
+      res.status(200).json(alluserAnalysis)
   } catch (error) {
       res.status(500).json({ message: "Error while trying to get all analysis", error})
   }
@@ -34,6 +35,7 @@ router.get('/', async (req, res) => {
 router.get('/:analysisId', async (req, res) => {
   const { analysisId } = req.params;
   try {
+      
       const analysis = await Analysis.findById(analysisId)
       res.status(200).json(analysis)
   } catch (error) {
