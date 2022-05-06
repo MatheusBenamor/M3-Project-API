@@ -166,6 +166,10 @@ const analysisSchema = new Schema(
       type: Number,
       required: true,
     },
+    analysisScore: {
+      type: String,
+      required: true,
+    },
       
     userId: {
       type: Schema.Types.ObjectId,
