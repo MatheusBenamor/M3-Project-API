@@ -54,6 +54,17 @@ router.put('/:analysisId', async (req, res) => {
   }
 })
 
+//DELETE - Delete uma análise de um user específico
+router.delete('/:analysisId', async (req, res) => {
+  const { analysisId } = req.params;
+  try {
+      await Analysis.findByIdAndDelete(analysisId)
+      res.status(204).json()
+  } catch (error) {
+      res.status(500).json({ message: "Error while trying to delete analysis", error:error.response})
+  }
+})
+/*
 //DELETE teste - Delete uma análise de um user específico
 router.delete('/:id', async (req, res) => {
   const { id }= req.params;
@@ -69,18 +80,9 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
       res.status(500).json({ message: "Error while trying to delete analysis", error:error.response})
   }
-})
-/*
-//DELETE - Delete uma análise de um user específico
-router.delete('/:analysisId', async (req, res) => {
-  const { analysisId } = req.params;
-  try {
-      await Analysis.findByIdAndDelete(analysisId)
-      res.status(204).json()
-  } catch (error) {
-      res.status(500).json({ message: "Error while trying to delete analysis", error:error.response})
-  }
 })*/
+
+
 
 
 module.exports = router;
