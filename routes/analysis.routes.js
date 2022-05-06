@@ -54,6 +54,23 @@ router.put('/:analysisId', async (req, res) => {
   }
 })
 
+//DELETE teste - Delete uma análise de um user específico
+router.delete('/:id', async (req, res) => {
+  const { id }= req.params;
+  const userId = req.user.id;
+  
+  try {
+    const analysis = await Analysis.findById(id);
+    if(analysis.user.toString() !== userId) {
+      throw new Error('cannot delete another user\'s analysis')
+  }
+      analysis.delete();
+      res.status(204).json()
+  } catch (error) {
+      res.status(500).json({ message: "Error while trying to delete analysis", error:error.response})
+  }
+})
+/*
 //DELETE - Delete uma análise de um user específico
 router.delete('/:analysisId', async (req, res) => {
   const { analysisId } = req.params;
@@ -63,26 +80,7 @@ router.delete('/:analysisId', async (req, res) => {
   } catch (error) {
       res.status(500).json({ message: "Error while trying to delete analysis", error:error.response})
   }
-})
+})*/
 
 
 module.exports = router;
-
-
-/* Colocar no insomnia assim:
-{
-"analysisName": "teste15Parte3",
-	"strengths": {
-		"elements": ["str1", "str2", "str3", "str4", "str5"]
-	},
-	"weaknesses": {
-		"elements": ["weak1", "weak2", "weak3", "weak4", "weak5"]
-	},
-	"opportunities": {
-		"elements": ["opp1", "opp2", "opp3", "opp4", "opp5"]
-	},
-	"threats": {
-		"elements": ["thr1", "thr2", "thr3", "thr4", "thr5"]
-	}
-}
-*/
